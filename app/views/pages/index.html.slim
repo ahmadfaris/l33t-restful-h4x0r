@@ -1,2 +1,42 @@
-h1 Pages#index
-p Find me in app/views/pages/index.html.slim
+#wrapper
+  /! Sidebar
+  #sidebar-wrapper
+    ul.sidebar-nav
+      li.sidebar-brand#menu-toggle
+        a href="#" 
+          | Faris Mohamad
+      li#about-tab
+        a href="#about"  About Me
+      li#resume-tab
+        a href="#resume"  My Resume
+      li#pixl-tab
+        a href="#pixl8"  Pixl8
+      li#contact-tab
+        a href="#contact"  Contact
+  /! /#sidebar-wrapper
+  /! Page Content
+  #page-content-wrapper
+    .container-fluid
+      a#menu-toggle-collapse.btn.btn-default href="#menu-toggle"
+        i.fa.fa-bars
+      = render partial: 'pages/about'
+      = render partial: 'pages/resume'
+      = render partial: 'pages/pixl8'
+      = render partial: 'pages/contact'
+    
+  /! /#page-content-wrapper
+/! /#wrapper
+/! jQuery
+script src="js/jquery.js" 
+/! Bootstrap Core JavaScript
+script src="js/bootstrap.min.js" 
+/! Menu Toggle Script
+javascript:
+  $("#menu-toggle").click(function(e) {
+    e.preventDefault();
+    $("#wrapper").toggleClass("toggled");
+  });
+  $("#menu-toggle-collapse").click(function(e) {
+    e.preventDefault();
+    $("#wrapper").toggleClass("toggled");
+  });
