@@ -6,13 +6,13 @@
         a href="#" 
           | Faris Mohamad
       li#about-tab
-        a href="#about"  About Me
+        | About Me
       li#resume-tab
-        a href="#resume"  My Resume
-      li#pixl-tab
-        a href="#pixl8"  Pixl8
+        | My Resume
+      li#pixl8-tab
+        | Pixl8
       li#contact-tab
-        a href="#contact"  Contact
+        | Contact
   /! /#sidebar-wrapper
   /! Page Content
   #page-content-wrapper
@@ -23,20 +23,3 @@
       = render partial: 'pages/resume'
       = render partial: 'pages/pixl8'
       = render partial: 'pages/contact'
-    
-  /! /#page-content-wrapper
-/! /#wrapper
-/! jQuery
-script src="js/jquery.js" 
-/! Bootstrap Core JavaScript
-script src="js/bootstrap.min.js" 
-/! Menu Toggle Script
-javascript:
-  $("#menu-toggle").click(function(e) {
-    e.preventDefault();
-    $("#wrapper").toggleClass("toggled");
-  });
-  $("#menu-toggle-collapse").click(function(e) {
-    e.preventDefault();
-    $("#wrapper").toggleClass("toggled");
-  });
