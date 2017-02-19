@@ -4,7 +4,8 @@
       h1 Pixl8 Application Form
   .row#application-form
     .col-lg-12
-      = form_tag("/", method: 'post', remote: true ) do
+      / = form_tag("/", method: 'post', remote: true ) do
+      = form_tag "https://www.pixl8.co.uk/api/jobs/v1/application/", method: :post, remote: :true do
         .form-group
           .col-md-3
             = label_tag(:fullName, 'Full Name : *')
