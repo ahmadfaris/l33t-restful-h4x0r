@@ -1,4 +1,64 @@
 #pixl8
   .row
     .col-lg-12
-      h1 Form data that connects to API
+      h1 Pixl8 Application Form
+  .row#application-form
+    .col-lg-12
+      = form_tag("/", method: 'post', remote: true ) do
+        .form-group
+          .col-md-3
+            = label_tag(:fullName, 'Full Name : *')
+          .col-md-9
+            = text_field_tag :fullName, "", class: 'form-control', required: true
+        .form-group
+          .col-md-3
+            = label_tag(:email, 'Email : *')
+          .col-md-9
+            = text_field_tag :email, "", class: 'form-control', required: true
+        .form-group
+          .col-md-3
+            = label_tag(:message, 'Message : *')
+          .col-md-9  
+            = text_field_tag :message, "", class: 'form-control', required: true
+        .form-group
+          .col-md-3
+            = label_tag(:website, 'Website : ')
+          .col-md-9
+            = text_field_tag :website, "", class: 'form-control'
+        .form-group
+          .col-md-3
+            = label_tag(:github, 'Github Username : ')
+          .col-md-9
+            = text_field_tag :github, "", class: 'form-control'
+        .form-group
+          .col-md-3
+            = label_tag(:linkedin, 'Linkedin : ')
+          .col-md-9
+            = text_field_tag :linkedin, "", class: 'form-control'
+        .form-group
+          .col-md-3
+            = label_tag(:testmode, 'TestMode : ')
+          .col-md-9
+            = hidden_field_tag :testmode, false
+            = check_box_tag :testmode, true, true
+        .form-group
+          .col-md-12
+            = submit_tag "Send Application", class: 'btn btn-success'
+  .row#response-body-message
+    .col-lg-12
+      #display-message
+
+javascript:
+  $(document).ready(function(){
+    $("form").on('ajax:success', function(event, data, status, xhr) {
+      $("#application-form").hide();
+      $( "#display-message" ).append( "<p>Response Code : " + data.status + "</p>" );
+      $( "#display-message" ).append( "<p>Response Message : " + data.message + "</p>" );
+    });
+
+    $("form").on('ajax:error', function(event, xhr, status, error) {
+      alert(xhr.status)
+      console.log("sorry mate!");
+    });
+
+  })
