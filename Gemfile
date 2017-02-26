@@ -24,7 +24,8 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem "slim-rails"
 gem "font-awesome-rails"
-gem 'rack-cors', :require => 'rack/cors'
+gem 'rack-cors'
+gem 'httparty'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password

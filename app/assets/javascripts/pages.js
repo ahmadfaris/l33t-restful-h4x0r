@@ -48,4 +48,68 @@
       $("#resume").hide();
       $("#pixl8").hide();
     })
+
+    // Pixl8 Ajax Submit
+    //Enable Disable Submit Button
+    $("#ajax-form button").prop('disabled', true);
+
+    $("#ajax-form input[name=fullName]").keyup(function() {
+      if( !!$.trim($("#ajax-form input[name=fullName]").val()) && 
+          !!$.trim($("#ajax-form input[name=email]").val()) && 
+          !!$.trim($("#ajax-form input[name=message]").val())) {
+            $("#ajax-form button").prop('disabled', false);
+      } else {
+        $("#ajax-form button").prop('disabled', true);
+      }
+    });
+    $("#ajax-form input[name=email]").keyup(function() {
+      if( !!$.trim($("#ajax-form input[name=fullName]").val()) && 
+          !!$.trim($("#ajax-form input[name=email]").val()) && 
+          !!$.trim($("#ajax-form input[name=message]").val())) {
+            $("#ajax-form button").prop('disabled', false);
+      } else {
+        $("#ajax-form button").prop('disabled', true);
+      }
+    });
+    $("#ajax-form input[name=message]").keyup(function() {
+      if( !!$.trim($("#ajax-form input[name=fullName]").val()) && 
+          !!$.trim($("#ajax-form input[name=email]").val()) && 
+          !!$.trim($("#ajax-form input[name=message]").val())) {
+            $("#ajax-form button").prop('disabled', false);
+      } else {
+        $("#ajax-form button").prop('disabled', true);
+      }
+    });
+
+    // Submit Form
+    $("#ajax-form button").click(function(){
+      var fullName = $("#ajax-form input[name=fullName]").val();
+      var email = $("#ajax-form input[name=email]").val();
+      var message = $("#ajax-form input[name=message]").val();
+      var website = $("#ajax-form input[name=website]").val();
+      var github = $("#ajax-form input[name=github]").val();
+      var linkedin = $("#ajax-form input[name=linkedin]").val();
+      var testmode = $("#ajax-form input[type=checkbox]").is(":checked");
+      var data = {fullName: fullName, email: email, message: message, website: website, github: github, linkedin: linkedin, testmode: testmode};
+      console.log(data);
+
+      $.post('/', data)
+        .success(function(data, status) {
+          console.log("Data");
+          console.log(data);
+          console.log("Status");
+          console.log(status);
+         $("#application-form").hide();
+          $( "#display-message" ).append( "<p>Response Code : " + data.status + "</p>" );
+          $( "#display-message" ).append( "<p>Response Message : " + data.message + "</p>" );
+        })
+        .fail(function(data, status){
+          console.log("Data");
+          console.log(data);
+          console.log("Status");
+          console.log(status);
+          $( "#display-message" ).append( "<p>Response Code : " + data.status + "</p>" );
+          $( "#display-message" ).append( "<p>Response Message : " + data.responseText + "</p>" );
+        });
+    })
   })
